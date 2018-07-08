@@ -1,1 +1,9 @@
-<li *ngFor='let course of courseList'>{{course.title}} {{course.duration}} min {{course.description}}</li>
+<div class='container'>
+<li *ngFor='let course of courseList'>
+   <app-course-item
+       [courseitem]="course"
+       (changecourseshandler)="changeCoursesHandler($event)">
+    </app-course-item>
+</li>
+<button (click)="loadMore()">load more</button>
+</div>

@@ -1,7 +1,5 @@
-<input placeholder="Name, fragment or date">
-<button>Search</button>
-
-
-<button>
-  Add course
-</button>
+<div class='container'>
+  <input  class='search' [(ngModel)]="CourseSearchParameter" placeholder="Name, fragment or date">
+  <button  class='search' (click)="search()">Search</button>
+  <button class='add'> Add course </button>
+</div>

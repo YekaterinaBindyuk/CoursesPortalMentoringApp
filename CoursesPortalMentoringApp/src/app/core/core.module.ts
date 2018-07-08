@@ -5,10 +5,12 @@ import { FooterComponent } from './footer/footer.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { FakeLogoComponent } from './fake-logo/fake-logo.component';
 import { ToolboxComponent } from './toolbox/toolbox.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   declarations: [HeaderComponent, FooterComponent, BreadcrumbsComponent, FakeLogoComponent, ToolboxComponent],
   exports: [HeaderComponent, FooterComponent, BreadcrumbsComponent, ToolboxComponent]

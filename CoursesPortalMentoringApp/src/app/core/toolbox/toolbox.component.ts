@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-toolbox',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolboxComponent implements OnInit {
 
+  @Input()
+  CourseSearchParameter: string;
   constructor() { }
 
   ngOnInit() {
   }
 
+  ngAfterViewInit(){
+    console.log('Toolbox component view has been initialized');
+  }
+    
+  search(){
+    console.log('SUBMITTED CourseSearchParameter value is: ' + this.CourseSearchParameter);
+  }
 }

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { Course } from '../../course';
+import { Input } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-course-item',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseItemComponent implements OnInit {
 
+  @Input()
+  courseitem: Course;
+  @Output()
+  changecourseshandler: EventEmitter<Course> = new EventEmitter<Course>();
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  deleteCourse(){
+    this.changecourseshandler.emit(this.courseitem);
   }
 
 }

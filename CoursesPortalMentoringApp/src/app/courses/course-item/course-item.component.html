@@ -1,3 +1,11 @@
-<p>
-  course-item works!
-</p>
+<div class='container'>
+<div class='course-parameters'>{{courseitem.title}} </div> 
+<div>{{courseitem.duration}} min</div>
+<div>{{courseitem.creation | date :  'MM.dd.yy' }}</div>
+<button>edit</button>
+</div>
+
+<div class='container'>
+<div class='course-parameters'>{{courseitem.description}} </div> 
+<button (click)="deleteCourse($event)">delete</button>
+</div>

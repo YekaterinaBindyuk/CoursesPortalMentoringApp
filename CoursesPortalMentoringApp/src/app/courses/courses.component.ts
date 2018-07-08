@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../course';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-courses',
@@ -8,41 +9,53 @@ import { Course } from '../course';
 })
 export class CoursesComponent implements OnInit {
 
-  public courseList: Course[] =[
-    {
-      id: '149741464',
-      title: 'Video 1',
-      creation: new Date('01.01.01'),
-      duration: 1,
-      description: 'The shortest decription ever'
-    },
-    {
-      id: '149fsfs1464',
-      title: 'Video 2',
-      creation: new Date('02.02.02'),
-      duration: 2,
-      description: 'The longest decription ever'
-    },
-    {
-      id: 'dgdg41464',
-      title: 'Video 3',
-      creation: new Date('03.01.03'),
-      duration: 1,
-      description: 'The shortest decription ever'
-    },
-    {
-      id: 'jdsasfs1464',
-      title: 'Video 4',
-      creation: new Date('04.02.04'),
-      duration: 4,
-      description: 'The longest decription ever'
-    }
+  @Input()
+  courseItem: Course;
 
-  ]
 
-  constructor() { }
+  public courseList;
+
+  constructor() {this.courseList = [];}
 
   ngOnInit() {
+    this.courseList = [
+      {
+        id: '149741464',
+        title: 'Transform shapes, icons, and text. Intro',
+        creation: new Date(),
+        duration: 1,
+        description: 'This weekly series demonstrates techniques for animation skills improvement. It consists of 3 lessons.'
+      },
+      {
+        id: '149fsfs1464',
+        title: 'CSS. Intro',
+        creation: new Date(),
+        duration: 2,
+        description: 'This weekly series demonstrates techniques for animation skills improvement. It consists of 3 lessons.'
+      },
+      {
+        id: 'dgdg41464',
+        title: 'Angular 2+',
+        creation: new Date(),
+        duration: 1,
+        description: 'This weekly series demonstrates techniques for animation skills improvement. It consists of 3 lessons.'
+      },
+      {
+        id: 'jdsasfs1464',
+        title: 'HTML. Andvanced',
+        creation: new Date(),
+        duration: 4,
+        description: 'This weekly series demonstrates techniques for animation skills improvement. It consists of 3 lessons.'
+      }
+  
+    ]
   }
 
+  changeCoursesHandler(course: Course){
+    console.log('course video has been deleted. Id: ' + course.id);
+  }
+
+  loadMore(){
+    console.log('load more method has been called');
+  }
 }
