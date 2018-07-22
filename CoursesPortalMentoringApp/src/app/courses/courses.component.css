@@ -6,6 +6,10 @@
     margin-bottom: 1%;
 }
 
+.nodata{
+    text-align: center;
+}
+
 button{
     margin-top: 10px;
 }

@@ -1,4 +1,4 @@
-.container{
+    .container{
     display: flex;
     padding: 1px;
     justify-content: flex-end;
@@ -9,10 +9,19 @@
     }
     
     div{
-    padding-right: 2%;
+    padding-right: 0.5%;
     padding-left: 1%;
     }
 
     button{
         width: 50px;
         }
+    
+    .top-rated{
+        background-color: blueviolet;
+    }
+ 
+    img{
+        height: 3%;
+        width: 3%;
+    }

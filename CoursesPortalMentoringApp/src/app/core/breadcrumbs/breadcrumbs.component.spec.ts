@@ -22,4 +22,12 @@ describe('BreadcrumbsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+//Testing correct title rendering
+
+  it(`should have as title 'Courses'`, async(() => {
+    const fixture = TestBed.createComponent(BreadcrumbsComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('Courses');
+  }))
 });

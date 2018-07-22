@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToolboxComponent } from './toolbox.component';
+import { FormsModule } from '@angular/forms';
 
 describe('ToolboxComponent', () => {
   let component: ToolboxComponent;
@@ -8,7 +9,9 @@ describe('ToolboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToolboxComponent ]
+      declarations: [ ToolboxComponent ],
+      imports: [FormsModule]
+      
     })
     .compileComponents();
   }));
@@ -22,4 +25,18 @@ describe('ToolboxComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+   //Testing correct buttons rendering
+
+   it(`should have as searchCourse 'search'`, async(() => {
+    const fixture = TestBed.createComponent(ToolboxComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.searchCourse).toEqual('search');
+  }))
+
+  it(`should have as addCourse 'add course'`, async(() => {
+    const fixture = TestBed.createComponent(ToolboxComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.addCourse).toEqual('add course');
+  }))
 });

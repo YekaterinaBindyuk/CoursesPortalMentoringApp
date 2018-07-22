@@ -15,13 +15,15 @@ export class CourseItemComponent implements OnInit {
   @Output()
   changecourseshandler: EventEmitter<Course> = new EventEmitter<Course>();
 
+  edit="edit";
+  delete ="delete";
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  deleteCourse(){
+  deleteCourse(): void{
     this.changecourseshandler.emit(this.courseitem);
   }
 

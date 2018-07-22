@@ -9,6 +9,11 @@ export class ToolboxComponent implements OnInit {
 
   @Input()
   CourseSearchParameter: string;
+
+  searchCourse = "search";
+  addCourse = "add course";
+
+
   constructor() { }
 
   ngOnInit() {
@@ -20,5 +25,6 @@ export class ToolboxComponent implements OnInit {
     
   search(){
     console.log('SUBMITTED CourseSearchParameter value is: ' + this.CourseSearchParameter);
+    
   }
 }

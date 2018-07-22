@@ -6,4 +6,5 @@ export class Course implements ICourse {
     creation: Date;
     duration: number;
     description: string;
+    topRated: boolean;
 }
