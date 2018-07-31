@@ -1,4 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CoursesComponent } from '../../courses/courses.component';
+import { FilterByTitlePipe } from '../../courses/filter-by-title.pipe';
+import { CourseService } from '../../courses/course.service';
+import { Course } from '../../course';
 
 @Component({
   selector: 'app-toolbox',
@@ -8,13 +12,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ToolboxComponent implements OnInit {
 
   @Input()
-  CourseSearchParameter: string;
+  courseSearchParameter: string;
 
   searchCourse = "search";
   addCourse = "add course";
 
-
-  constructor() { }
+  constructor(private courseService: CourseService) {
+   }
 
   ngOnInit() {
   }
@@ -24,7 +28,16 @@ export class ToolboxComponent implements OnInit {
   }
     
   search(){
-    console.log('SUBMITTED CourseSearchParameter value is: ' + this.CourseSearchParameter);
-    
+    console.log('SUBMITTED CourseSearchParameter value is: ' + this.courseSearchParameter);
+      //filtering courses by title
+      
+    const courses=new FilterByTitlePipe().transform(this.courseService.getCourses(), this.courseSearchParameter); 
+    console.log(courses);
+    this.courseService.setFilteredCourses(courses);
+    console.log(this.courseService.getFilteredCourses());
+  }
+
+  addNewCourse(){
+    this.courseService.createCourse();
   }
 }

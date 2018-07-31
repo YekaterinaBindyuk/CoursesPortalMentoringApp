@@ -1,5 +1,5 @@
 <div class='container'>
-  <input  class='search' [(ngModel)]="CourseSearchParameter" placeholder="Name, fragment or date">
+  <input  class='search' [(ngModel)]="courseSearchParameter" placeholder="Name, fragment or date">
   <button  class='search' (click)="search()">{{searchCourse}}</button>
-  <button class='add'> {{addCourse}} </button>
+  <button class='add' (click)="addNewCourse()"> {{addCourse}} </button>
 </div>

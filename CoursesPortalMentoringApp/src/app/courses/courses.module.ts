@@ -5,8 +5,9 @@ import { CourseItemComponent } from './course-item/course-item.component';
 import { FormsModule } from '@angular/forms';
 import { DurationPipe } from './course-item/duration.pipe';
 import { SortPipe } from './sort.pipe';
-import { FreshCoursesDirective } from './fresh-courses.directive';
 import { FilterByTitlePipe } from './filter-by-title.pipe';
+import { FreshCoursesDirective } from './course-item/fresh-courses.directive';
+import { CourseService } from './course.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { FilterByTitlePipe } from './filter-by-title.pipe';
     CoursesComponent,
     CourseItemComponent
   ],
+  providers: [CourseService],
   declarations: [CoursesComponent, CourseItemComponent, DurationPipe, FreshCoursesDirective, SortPipe, FilterByTitlePipe]
 })
 export class CoursesModule { }

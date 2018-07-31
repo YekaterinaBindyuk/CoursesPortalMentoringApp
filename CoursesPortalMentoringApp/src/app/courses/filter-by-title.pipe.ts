@@ -7,8 +7,10 @@ import { Course } from '../course';
 export class FilterByTitlePipe implements PipeTransform {
 
   transform(courses: Array<Course>, title: string): Array<Course> {
-
-    return courses.filter(course => course.title==title);
+    if (!courses || !title) {
+      return courses
+    }
+    return courses.filter(course => course.title.toLowerCase().includes(title.toLowerCase()));
   }
 
 }

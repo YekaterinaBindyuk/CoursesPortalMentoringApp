@@ -1,7 +1,12 @@
 <div class='container'>
-<div><app-fake-logo></app-fake-logo></div>
-<div class='account-container'>
-<p>{{login}}</p>
-<button>{{logout}}</button>
-</div>
+  <div>
+    <app-fake-logo></app-fake-logo>
+  </div>
+  <div *ngIf="authService.isAuthenticated; else login" class='account-container'>
+    <p>{{loginMessage}}</p>
+    <button (click)="logout()">{{logoutMessage}}</button>
+  </div>
+    <ng-template #login>
+      <app-login-page class='login-container'></app-login-page>
+    </ng-template>
 </div>

@@ -6,7 +6,7 @@ import { Input } from '@angular/core';
   selector: '[appFreshCourses]'
 })
 export class FreshCoursesDirective {
-  @Input('creationDate') creationDate: Date;
+  @Input() creationDate: Date;
 
   freshDate: Date;
 

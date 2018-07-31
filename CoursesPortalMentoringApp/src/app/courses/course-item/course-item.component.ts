@@ -24,7 +24,8 @@ export class CourseItemComponent implements OnInit {
   }
 
   deleteCourse(): void{
-    this.changecourseshandler.emit(this.courseitem);
+   if(confirm('Delete this course?')) {
+    this.changecourseshandler.emit(this.courseitem);   
   }
-
+  }
 }

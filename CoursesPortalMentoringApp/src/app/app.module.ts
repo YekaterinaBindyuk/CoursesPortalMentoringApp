@@ -5,10 +5,13 @@ import { AppComponent } from './app.component';
 import { CoursesModule } from './courses/courses.module';
 import { CoreModule } from './core/core.module';
 import { FooterComponent } from './core/footer/footer.component';
+import { AuthService } from './auth.service';
+import { CourseService } from './courses/course.service';
+import { CoursesComponent } from './courses/courses.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [ 
     BrowserModule,
@@ -16,7 +19,7 @@ import { FooterComponent } from './core/footer/footer.component';
     CoreModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthService, CourseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
