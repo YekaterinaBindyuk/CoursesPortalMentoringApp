@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Course } from '../course';
+import { Course } from '../entities/course';
 
 @Pipe({
   name: 'sort'
@@ -18,8 +18,8 @@ export class SortPipe implements PipeTransform {
         return 0;
       }
     });
-    this.sortedArray=array;
-    return this.sortedArray; 
-   }
+    this.sortedArray = array;
+    return this.sortedArray;
+  }
 
 }

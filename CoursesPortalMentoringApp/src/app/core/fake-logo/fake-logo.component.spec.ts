@@ -8,9 +8,9 @@ describe('FakeLogoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FakeLogoComponent ]
+      declarations: [FakeLogoComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

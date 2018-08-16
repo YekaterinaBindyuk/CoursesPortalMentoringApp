@@ -1,15 +1,15 @@
-<div appFreshCourses [creationDate]="courseitem.creation" [class.top-rated] = "courseitem.topRated">
-<div class='container'>
-        <div class='course-parameters'>{{courseitem.title| uppercase}} </div> 
-        <img  *ngIf="courseitem.topRated" src="assets/star.png">
-        
-        <div>{{courseitem.duration | duration}}</div>
-        
-        <div>{{courseitem.creation | date :  'MM.dd.yy' }}</div>
-        <button>{{edit}}</button>
+<div appFreshCourses [creationDate]="courseitem.creation" [class.top-rated]="courseitem.topRated">
+        <div class='container'>
+                <div class='course-parameters'>{{courseitem.title| uppercase}} </div>
+                <img *ngIf="courseitem.topRated" src="assets/star.png">
+
+                <div>{{courseitem.duration | duration}}</div>
+
+                <div>{{courseitem.creation | date : 'MM.dd.yy' }}</div>
+                <button>{{edit}}</button>
         </div>
         <div class='container'>
-        <div class='course-parameters'>{{courseitem.description}} </div> 
-        <button class='delete-button' (click)="deleteCourse($event)">{{delete}}</button>
+                <div class='course-parameters'>{{courseitem.description}} </div>
+                <button class='delete-button' (click)="deleteCourse()">{{delete}}</button>
         </div>
 </div>

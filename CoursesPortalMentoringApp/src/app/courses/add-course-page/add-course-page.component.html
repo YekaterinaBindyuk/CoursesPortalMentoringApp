@@ -1,0 +1,6 @@
+<input [(ngModel)]="course.title" placeholder="title">
+<textarea [(ngModel)]="course.description" placeholder="description"></textarea>
+<app-course-creation-date (changeDateHandler)="onChangeDateHandler($event)"></app-course-creation-date>
+<app-course-duration (changeDurationHandler)="onChangeDurationHandler($event)"></app-course-duration>
+<button (click)='save()'>save</button>
+<button (click)='cancel()'>cancel</button>

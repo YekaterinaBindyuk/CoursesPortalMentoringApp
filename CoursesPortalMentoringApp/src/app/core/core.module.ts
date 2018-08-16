@@ -6,16 +6,16 @@ import { FakeLogoComponent } from './fake-logo/fake-logo.component';
 import { ToolboxComponent } from './toolbox/toolbox.component';
 import { FormsModule } from '@angular/forms';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { AuthService } from '../auth.service';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { AppRoutingModule } from '../routing/app-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule
   ],
-  providers: [AuthService],
-  declarations: [HeaderComponent, FooterComponent, FakeLogoComponent, ToolboxComponent, LoginPageComponent],
-  exports: [HeaderComponent, FooterComponent, ToolboxComponent]
+  declarations: [HeaderComponent, FooterComponent, FakeLogoComponent, ToolboxComponent, LoginPageComponent, BreadcrumbsComponent],
+  exports: [HeaderComponent, FooterComponent, ToolboxComponent, BreadcrumbsComponent]
 
 })
 export class CoreModule { }

@@ -8,6 +8,12 @@ import { SortPipe } from './sort.pipe';
 import { FilterByTitlePipe } from './filter-by-title.pipe';
 import { FreshCoursesDirective } from './course-item/fresh-courses.directive';
 import { CourseService } from './course.service';
+import { CourseCreationDateComponent } from './course-creation-date/course-creation-date.component';
+import { CourseDurationComponent } from './course-duration/course-duration.component';
+import { AddCoursePageComponent } from 'src/app/courses/add-course-page/add-course-page.component';
+import { EditCoursePageComponent } from './edit-course-page/edit-course-page.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from '../routing/app-routing.module';
 
 @NgModule({
   imports: [
@@ -19,6 +25,8 @@ import { CourseService } from './course.service';
     CourseItemComponent
   ],
   providers: [CourseService],
-  declarations: [CoursesComponent, CourseItemComponent, DurationPipe, FreshCoursesDirective, SortPipe, FilterByTitlePipe]
+  declarations: [CoursesComponent, AddCoursePageComponent, CourseItemComponent, DurationPipe,
+    FreshCoursesDirective, SortPipe, FilterByTitlePipe, AddCoursePageComponent, CourseCreationDateComponent,
+    CourseDurationComponent, EditCoursePageComponent]
 })
 export class CoursesModule { }

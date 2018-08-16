@@ -1,35 +1,35 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseItemComponent } from './course-item.component';
-import { FreshCoursesDirective } from '../fresh-courses.directive';
 import { DurationPipe } from './duration.pipe';
-import { Course } from '../../course';
 import { By } from '@angular/platform-browser';
+import { Course } from '../../entities/course';
+import { FreshCoursesDirective } from './fresh-courses.directive';
 
 describe('CourseItemComponent', () => {
   let component: CourseItemComponent;
   let fixture: ComponentFixture<CourseItemComponent>;
 
- 
+
   let course: Course;
-  
-  //DOM testing configuration
+
+  // DOM testing configuration
   let expectedValue: string;
   let actualValue: string;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseItemComponent, FreshCoursesDirective, DurationPipe ]
-    })
+      declarations: [CourseItemComponent, FreshCoursesDirective, DurationPipe]
+    });
   }));
 
   beforeEach(() => {
 
-    //standalone testing configuration
+    // standalone testing configuration
     course = new Course();
     course.title = 'Test course';
     course.topRated = false;
-    
+
     fixture = TestBed.createComponent(CourseItemComponent);
     component = fixture.componentInstance;
 
@@ -42,20 +42,20 @@ describe('CourseItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-   //Testing correct buttons rendering
-   it(`should have as edit 'edit'`, async(() => {
-    const fixture = TestBed.createComponent(CourseItemComponent);
+  // Testing correct buttons rendering
+  it(`should have as edit 'edit'`, async(() => {
+    fixture = TestBed.createComponent(CourseItemComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.edit).toEqual('edit');
-  }))
+  }));
 
   it(`should have as delete 'delete'`, async(() => {
-    const fixture = TestBed.createComponent(CourseItemComponent);
+    fixture = TestBed.createComponent(CourseItemComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.delete).toEqual('delete');
-  }))
+  }));
 
-  //standalone testing 
+  // standalone testing
   it('should delete course', () => {
     const deleteButton = fixture.debugElement.query(By.css('.delete-button'));
     let deletedCourse: Course;
@@ -64,7 +64,7 @@ describe('CourseItemComponent', () => {
     expect(deletedCourse).toBe(course);
   });
 
-  //DOM testing of courseitem attribute rendering with pipe
+  // DOM testing of courseitem attribute rendering with pipe
 
   it(`should render title correctly`, async(() => {
     fixture.detectChanges();
@@ -74,6 +74,6 @@ describe('CourseItemComponent', () => {
     expectedValue = course.title.toUpperCase();
     actualValue = div.textContent.trim();
     expect(actualValue).toBe(expectedValue);
-  }))
-
+  }));
 });
+

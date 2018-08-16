@@ -6,10 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DurationPipe implements PipeTransform {
 
   transform(value: number): any {
-    if (value > 60){
-        return Math.floor (value/60) + 'h'+ value%60 + 'min'; 
+    if (value > 60) {
+      return Math.floor(value / 60) + 'h' + value % 60 + 'min';
+    } else {
+      return value + 'min';
     }
-    else return value + 'min';
   }
 
 }

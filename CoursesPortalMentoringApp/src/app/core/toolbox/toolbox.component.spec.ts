@@ -9,11 +9,11 @@ describe('ToolboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToolboxComponent ],
+      declarations: [ToolboxComponent],
       imports: [FormsModule]
-      
+
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -26,17 +26,17 @@ describe('ToolboxComponent', () => {
     expect(component).toBeTruthy();
   });
 
-   //Testing correct buttons rendering
+  // Testing correct buttons rendering
 
-   it(`should have as searchCourse 'search'`, async(() => {
-    const fixture = TestBed.createComponent(ToolboxComponent);
+  it(`should have as searchCourse 'search'`, async(() => {
+    fixture = TestBed.createComponent(ToolboxComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.searchCourse).toEqual('search');
-  }))
+  }));
 
   it(`should have as addCourse 'add course'`, async(() => {
-    const fixture = TestBed.createComponent(ToolboxComponent);
+    fixture = TestBed.createComponent(ToolboxComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.addCourse).toEqual('add course');
-  }))
+  }));
 });

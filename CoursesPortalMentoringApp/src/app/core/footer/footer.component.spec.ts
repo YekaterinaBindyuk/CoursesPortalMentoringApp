@@ -8,9 +8,9 @@ describe('FooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      declarations: [FooterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,13 +23,13 @@ describe('FooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  //Testing correct copyright rendering
+  // Testing correct copyright rendering
 
   it(`should have as copyright 'Copyright @ Videocurses, All Rights Reserved'`, async(() => {
-    const fixture = TestBed.createComponent(FooterComponent);
+    fixture = TestBed.createComponent(FooterComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.copyright).toEqual('Copyright @ Videocurses, All Rights Reserved');
-  }))
+  }));
 });
 
 

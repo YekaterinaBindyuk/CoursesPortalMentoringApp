@@ -1,15 +1,13 @@
 <div class='container' *ngIf="courseList.length; else coursesListIsEmpty">
-<li *ngFor="let course of courseList | sort">
-   <app-course-item
-       [courseitem]="course"
-       (changecourseshandler)="changeCoursesHandler($event)">
-    </app-course-item>
-</li>
-<button (click)="loadMore()">{{loadMoreMessage}}</button>
+    <li *ngFor="let course of courseList | sort">
+        <app-course-item [courseitem]="course" (changecourseshandler)="changeCoursesHandler($event)">
+        </app-course-item>
+    </li>
+    <button (click)="loadMore()">{{loadMoreMessage}}</button>
 </div>
 
 <ng-template #coursesListIsEmpty>
     <div class='nodata'>
         {{noDataMessage}}
     </div>
-      </ng-template>
+</ng-template>

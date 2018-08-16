@@ -9,12 +9,12 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
+      declarations: [HeaderComponent],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -27,17 +27,17 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  //testing correct rendering of user login and logout section
+  // testing correct rendering of user login and logout section
   it(`should have as login 'User Login'`, async(() => {
-    const fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.login).toEqual('User Login');
-  }))
+  }));
 
   it(`should have as logout 'log out'`, async(() => {
-    const fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.logout).toEqual('log out');
-  }))
+  }));
 
 });
