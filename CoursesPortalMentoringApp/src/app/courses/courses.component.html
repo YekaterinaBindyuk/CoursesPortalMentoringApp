@@ -1,6 +1,8 @@
+<input class='search' #searchControl id="search" placeholder="Type to search...">
+<button class='search' (click)="search(searchControl.value)">searchCourse</button>
 <div class='container' *ngIf="courseList.length; else coursesListIsEmpty">
     <li *ngFor="let course of courseList | sort">
-        <app-course-item [courseitem]="course" (changecourseshandler)="changeCoursesHandler($event)">
+        <app-course-item [courseitem]="course" (deleteCourseHandler)="deleteCourse($event)" (editCourseHandler)="editCourse($event)">
         </app-course-item>
     </li>
     <button (click)="loadMore()">{{loadMoreMessage}}</button>

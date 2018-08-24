@@ -6,7 +6,7 @@ import { Course } from '../entities/course';
 })
 export class FilterByTitlePipe implements PipeTransform {
 
-  transform(courses: Array<Course>, title: string): Array<Course> {
+  public transform(courses: Array<Course>, title: string): Array<Course> {
     if (!courses || !title) {
       return courses;
     }

@@ -4,6 +4,10 @@ import { FilterByTitlePipe } from '../../courses/filter-by-title.pipe';
 import { CourseService } from '../../courses/course.service';
 import { Router } from '@angular/router';
 import { AfterViewInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Course } from '../../entities/course';
 
 @Component({
   selector: 'app-toolbox',
@@ -12,33 +16,21 @@ import { AfterViewInit } from '@angular/core';
 })
 export class ToolboxComponent implements OnInit, AfterViewInit {
 
-  @Input()
-  courseSearchParameter: string;
-
-  searchCourse = 'search';
-  addCourse = 'add course';
+  private addCourse = 'add course';
+  private subscription: Subscription;
 
   constructor(private courseService: CourseService, private router: Router) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     console.log('Toolbox component view has been initialized');
   }
 
-  search() {
-    console.log('SUBMITTED CourseSearchParameter value is: ' + this.courseSearchParameter);
-    // filtering courses by title
-
-    const courses = new FilterByTitlePipe().transform(this.courseService.getCourses(), this.courseSearchParameter);
-    console.log(courses);
-    this.courseService.setFilteredCourses(courses);
-    this.router.navigate(['/courses']);
-  }
-
-  addNewCourse() {
+ 
+  public addNewCourse() {
     this.router.navigate(['/courses/new']);
   }
 }

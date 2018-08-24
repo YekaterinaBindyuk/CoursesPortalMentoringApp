@@ -10,21 +10,21 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  loginMessage = 'User Login';
-  logoutMessage = 'log out';
+  private loginMessage: string = 'You are logged in';
+  private logoutMessage = 'log out';
 
   constructor(public authService: AuthService, private router: Router) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
-  logout() {
+  public logout() {
     this.authService.logout();
     this.goToLoginPage();
   }
 
-  goToLoginPage() {
+  public goToLoginPage() {
     this.router.navigate(['/login']);
   }
 

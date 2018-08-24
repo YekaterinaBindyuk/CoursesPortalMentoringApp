@@ -13,13 +13,13 @@ import { SimpleChanges } from '@angular/core';
 export class CourseCreationDateComponent implements OnInit, OnChanges {
 
   @Output()
-  changeDateHandler: EventEmitter<Date> = new EventEmitter<Date>();
+  private changeDateHandler: EventEmitter<Date> = new EventEmitter<Date>();
   @Input()
-  date: Date;
+  private date: Date;
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {

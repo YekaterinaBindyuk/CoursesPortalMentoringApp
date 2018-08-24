@@ -20,10 +20,10 @@ export class CourseDurationComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     this.changeDurationHandler.emit(this.duration);
   }
 

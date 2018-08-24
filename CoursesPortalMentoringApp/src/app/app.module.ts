@@ -10,6 +10,10 @@ import { CoursesComponent } from './courses/courses.component';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { AuthService } from './core/auth/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/auth/auth-interceptor';
+import { UserService } from './core/user.service';
 
 @NgModule({
   declarations: [
@@ -22,8 +26,10 @@ import { AuthService } from './core/auth/auth.service';
     CoreModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [AuthService, CourseService],
+  providers: [AuthService, CourseService, UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

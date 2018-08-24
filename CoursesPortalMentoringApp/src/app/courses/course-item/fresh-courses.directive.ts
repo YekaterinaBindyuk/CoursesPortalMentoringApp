@@ -7,10 +7,9 @@ import { AfterViewInit } from '@angular/core';
   selector: '[appFreshCourses]'
 })
 export class FreshCoursesDirective implements AfterViewInit {
-  @Input() creationDate: Date;
-
-  freshDate: Date;
-
+  @Input()
+  private creationDate: Date;
+  private freshDate: Date;
 
   constructor(private element: ElementRef) {
   }

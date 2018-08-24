@@ -1,92 +1,54 @@
 import { Injectable } from '@angular/core';
 import { Course } from '../entities/course';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
 
-  private courseList: Array<Course> = [
-    {
-      id: 1,
-      title: 'Transform shapes, icons, and text. Intro',
-      creation: new Date(),
-      duration: 35,
-      description: 'This weekly series demonstrates techniques for animation skills improvement. It consists of 3 lessons.',
-      topRated: true
-    },
-    {
-      id: 2,
-      title: 'CSS. Intro',
-      creation: new Date('12/11/2018'),
-      duration: 75,
-      description: 'This weekly series demonstrates techniques for animation skills improvement. It consists of 3 lessons.',
-      topRated: false
+  private coursesUrl = 'http://localhost:3004/courses';
+  private selectedCourse = new Course();
+  private courseList: Array<Course> = [];
+  private httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
+  
+  constructor(private http: HttpClient) { }
 
-    },
-    {
-      id: 3,
-      title: 'Angular 2+',
-      creation: new Date(),
-      duration: 130,
-      description: 'This weekly series demonstrates techniques for animation skills improvement. It consists of 3 lessons.',
-      topRated: false
-
-    },
-    {
-      id: 4,
-      title: 'HTML. Andvanced',
-      creation: new Date('01/01/2018'),
-      duration: 45,
-      description: 'This weekly series demonstrates techniques for animation skills improvement. It consists of 3 lessons.',
-      topRated: true
-
-    }
-  ];
-
-  filteredCourses = this.courseList;
-
-  constructor() { }
-
-
-  setCourses(courses: Array<Course>) {
-    this.courseList = courses;
+  public getCourses(start: string, count : string): Observable<Course[]> {
+    return this.http.get<Course[]>(this.coursesUrl, {params: {count, start}});
   }
 
-  getCourses() {
-    return this.courseList;
+  public createCourse(course: Course): Observable<Course> {
+    return this.http.post<Course>(this.coursesUrl, course, this.httpOptions);
   }
 
-  setFilteredCourses(courses: Array<Course>) {
-    this.filteredCourses = courses;
+  public updateCourse(course: Course): Observable<Course> {
+    const url = this.coursesUrl + '/' + course.id;
+    return this.http.put<Course>(url, course, this.httpOptions);
   }
 
-  getFilteredCourses() {
-    return this.filteredCourses;
+  public removeCourse(id: number): Observable<any> {
+    return this.http.delete(this.coursesUrl + '/' + id);
   }
 
-
-
-
-
-  public createCourse(course: Course) {
+  public getCourseByID(id: number): Observable<Course> {
+    const url = this.coursesUrl + '/' + id;
+    return this.http.get<Course>(url);
   }
 
-  public updateCourse(course: Course) {
+  public searchCourses(textFragment: string): Observable<Course[]> {
+    return this.http.get<Course[]>(this.coursesUrl, {params: {textFragment}});
   }
 
-  public removeCourse(id: number): void {
-    for (const course of this.courseList) {
-      if (course.id === id) {
-        this.courseList.slice(course.id);
-      }
-    }
+  public getSelectedCourse(): Course {
+    return this.selectedCourse;
   }
 
-  public getCourseByID(id: number) {
-    return this.courseList.find(course => course.id === id);
+  public setSelectedCourse(course: Course){
+    this.selectedCourse = course;
   }
-
-
-
 }

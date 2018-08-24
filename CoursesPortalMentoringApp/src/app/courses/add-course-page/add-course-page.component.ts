@@ -1,37 +1,48 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, OnDestroy } from '@angular/core';
 import { Input } from '@angular/core';
 import { Course } from '../../entities/course';
 import { Router } from '@angular/router';
 import { CourseService } from '../course.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-course-page',
   templateUrl: './add-course-page.component.html',
   styleUrls: ['./add-course-page.component.css']
 })
-export class AddCoursePageComponent implements OnInit {
+export class AddCoursePageComponent implements OnInit, OnDestroy {
 
-  course: Course;
-
+  private course: Course;
+  private subscription: Subscription;
+  private generatedId = 0;
   constructor(private router: Router, private courseService: CourseService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.course = new Course();
   }
 
-  save() {
-    this.courseService.createCourse(this.course);
+  public save() {
+    this.generatedId++;
+    this.course.id = this.generatedId;
+    this.subscription = this.courseService.createCourse(this.course).subscribe(() => {console.log('the course has been created. Id: ' + this.course.id);     this.router.navigate(['/courses']);}
+  );
   }
 
-  cancel() {
+  public cancel() {
     this.router.navigate(['/courses']);
   }
 
-  onChangeDateHandler(date: Date) {
+  public onChangeDateHandler(date: Date) {
     this.course.creation = date;
   }
 
-  onChangeDurationHandler(duration: number) {
+  public onChangeDurationHandler(duration: number) {
     this.course.duration = duration;
+  }
+
+  public ngOnDestroy(): void {
+    if (this.subscription) {
+       this.subscription.unsubscribe();
+    }
   }
 }

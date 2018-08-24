@@ -6,7 +6,7 @@
                 <div>{{courseitem.duration | duration}}</div>
 
                 <div>{{courseitem.creation | date : 'MM.dd.yy' }}</div>
-                <button>{{edit}}</button>
+                <button (click)="editCourse()">{{edit}}</button>
         </div>
         <div class='container'>
                 <div class='course-parameters'>{{courseitem.description}} </div>

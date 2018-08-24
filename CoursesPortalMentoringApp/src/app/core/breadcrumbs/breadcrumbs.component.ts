@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { CourseService } from '../../courses/course.service';
 import { Input } from '@angular/core';
 import { Course } from '../../entities/course';
+import { DoCheck } from '@angular/core';
 
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.css']
 })
-export class BreadcrumbsComponent implements OnInit {
+export class BreadcrumbsComponent implements OnInit, DoCheck  {
 
-  @Input()
-  course: Course = new Course();
+  private course: Course = new Course();
 
-  constructor(private activatedRoute: ActivatedRoute, private courseService: CourseService) { }
+  constructor(private courseService: CourseService) { }
 
-  ngOnInit(): void {
+  public ngDoCheck(): void {
+    this.course = this.courseService.getSelectedCourse();
   }
+  public ngOnInit(): void {
+  }
+
  }

@@ -8,11 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { AppRoutingModule } from '../routing/app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    ReactiveFormsModule, 
+    FormsModule, 
+    AppRoutingModule
   ],
   declarations: [HeaderComponent, FooterComponent, FakeLogoComponent, ToolboxComponent, LoginPageComponent, BreadcrumbsComponent],
   exports: [HeaderComponent, FooterComponent, ToolboxComponent, BreadcrumbsComponent]

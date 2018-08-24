@@ -14,21 +14,26 @@ import { Course } from '../../entities/course';
 export class CourseItemComponent implements OnInit {
 
   @Input()
-  courseitem: Course;
+  private courseitem: Course;
   @Output()
-  changecourseshandler: EventEmitter<Course> = new EventEmitter<Course>();
-
-  edit = 'edit';
-  delete = 'delete';
+  private deleteCourseHandler: EventEmitter<Course> = new EventEmitter<Course>();
+  @Output()
+  private editCourseHandler: EventEmitter<Course> = new EventEmitter<Course>();
+  private edit = 'edit';
+  private delete = 'delete';
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  deleteCourse(): void {
+  public deleteCourse(): void {
     if (confirm('Delete this course?')) {
-      this.changecourseshandler.emit(this.courseitem);
+      this.deleteCourseHandler.emit(this.courseitem);
     }
+  }
+
+  public editCourse(): void {
+      this.editCourseHandler.emit(this.courseitem);
   }
 }

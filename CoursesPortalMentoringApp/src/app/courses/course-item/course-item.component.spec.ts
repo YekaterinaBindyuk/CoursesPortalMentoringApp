@@ -59,7 +59,7 @@ describe('CourseItemComponent', () => {
   it('should delete course', () => {
     const deleteButton = fixture.debugElement.query(By.css('.delete-button'));
     let deletedCourse: Course;
-    component.changecourseshandler.subscribe((actualCourse: Course) => deletedCourse = actualCourse);
+    component.deleteCourseHandler.subscribe((actualCourse: Course) => deletedCourse = actualCourse);
     deleteButton.triggerEventHandler('click', null);
     expect(deletedCourse).toBe(course);
   });

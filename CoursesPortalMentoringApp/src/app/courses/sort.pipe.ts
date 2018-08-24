@@ -6,9 +6,9 @@ import { Course } from '../entities/course';
 })
 export class SortPipe implements PipeTransform {
 
-  sortedArray: Array<Course>;
+  private sortedArray: Array<Course>;
 
-  transform(array: Array<Course>): Array<Course> {
+  public transform(array: Array<Course>): Array<Course> {
     array.sort((a: Course, b: Course) => {
       if (a.creation < b.creation) {
         return -1;

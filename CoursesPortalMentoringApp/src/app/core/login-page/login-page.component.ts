@@ -9,17 +9,19 @@ import { AuthService } from '../auth/auth.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  userLogin: string;
-  password: string;
-  loginMessage = 'login';
+  private userLogin: string;
+  private password: string;
+  private loginMessage = 'login';
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
   public login() {
     this.authService.login(this.userLogin, this.password);
+    let fakeToken = this.authService.getToken();
+    localStorage.setItem('token', fakeToken);
     this.router.navigate(['/courses']);
   }
 
