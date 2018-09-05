@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "CoursesPortalMentoringApp"
+  "defaultProject": "CoursesPortalMentoringApp",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
