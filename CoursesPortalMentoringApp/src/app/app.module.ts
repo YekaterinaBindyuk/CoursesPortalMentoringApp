@@ -30,7 +30,7 @@ import { Reducer } from './reducer';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    //StoreModule.provideStore(Reducer),
+    StoreModule.provideStore(Reducer),
   ],
   providers: [AuthService, CourseService, UserService, LoaderService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
