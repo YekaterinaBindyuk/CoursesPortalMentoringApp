@@ -9,6 +9,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { AppRoutingModule } from '../routing/app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoadingBlockComponent } from './loading-block/loading-block.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule, 
     AppRoutingModule
   ],
-  declarations: [HeaderComponent, FooterComponent, FakeLogoComponent, ToolboxComponent, LoginPageComponent, BreadcrumbsComponent],
+  declarations: [HeaderComponent, FooterComponent, FakeLogoComponent, ToolboxComponent, LoginPageComponent, BreadcrumbsComponent, LoadingBlockComponent],
   exports: [HeaderComponent, FooterComponent, ToolboxComponent, BreadcrumbsComponent]
 
 })

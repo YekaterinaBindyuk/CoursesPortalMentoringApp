@@ -1,7 +1,15 @@
-<div>
-    <input [(ngModel)]="userLogin" placeholder="login">
-</div>
-<div>
-    <input [(ngModel)]="password" placeholder="password">
-</div>
-<button (click)="login()">{{loginMessage}}</button>
+<form id="loginForm">
+    <div *ngIf="userLogin.invalid&&userLogin.touched">
+        This field cannot be empty
+    </div>
+    <div>
+        <input [formControl]="userLogin" name="userLogin" placeholder="login">
+    </div>
+    <div *ngIf="password.invalid&&password.touched">
+        This field cannot be empty
+    </div>
+    <div>
+        <input [formControl]="password" name="password" placeholder="password">
+    </div>
+    <button (click)="login()" type="submit" [disabled]="!userLogin.valid||!password.valid">{{loginMessage}}</button>
+</form>

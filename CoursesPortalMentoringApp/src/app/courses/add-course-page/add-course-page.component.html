@@ -1,6 +1,48 @@
-<input [(ngModel)]="course.title" placeholder="title">
-<textarea [(ngModel)]="course.description" placeholder="description"></textarea>
-<app-course-creation-date (changeDateHandler)="onChangeDateHandler($event)"></app-course-creation-date>
-<app-course-duration (changeDurationHandler)="onChangeDurationHandler($event)"></app-course-duration>
-<button (click)='save()'>save</button>
-<button (click)='cancel()'>cancel</button>
+<div [formGroup]="addCourseForm" class="form-class">
+    <div *ngIf="controls.title.invalid&&controls.title.touched">
+        <div *ngIf="controls.title.errors.required">
+            This field cannot be empty
+        </div>
+        <div *ngIf="controls.title.errors.maxlength">
+            This field cannot contain more than 50 symbols
+        </div>
+    </div>
+    <div>
+        <input formControlName="title" name="title" placeholder="Title">
+    </div>
+    <div *ngIf="controls.description.invalid&&controls.description.touched">
+        <div *ngIf="controls.description.errors.required">
+            This field cannot be empty
+        </div>
+        <div *ngIf="controls.description.errors.maxlength">
+            This field cannot contain more than 500 symbols
+        </div>
+    </div>
+    <div>
+        <input formControlName="description" name="description" placeholder="Description">
+    </div>
+    <div *ngIf="controls.duration.invalid&&controls.duration.touched">
+        <div *ngIf="controls.duration.errors.required">
+            This field cannot be empty
+        </div>
+        <div *ngIf="controls.duration.errors.notinteger">
+            Invalid number format
+        </div>
+    </div>
+    <div>
+        <app-course-duration formControlName="duration" [duration]="course.duration"></app-course-duration>
+    </div>
+    <div *ngIf="controls.date.invalid&&controls.date.touched">
+        <div *ngIf="controls.date.errors.required">
+            This field cannot be empty
+        </div>
+        <div *ngIf="controls.date.errors.notdate">
+            Invalid date format
+        </div>
+    </div>
+    <div>
+        <app-course-creation-date formControlName="date" [date]="course.creation"></app-course-creation-date>
+    </div>
+    <button (click)="save()" type="submit" [disabled]="!addCourseForm.valid">save</button>
+    <button (click)="cancel()">cancel</button>
+</div>

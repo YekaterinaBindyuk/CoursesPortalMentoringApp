@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { UserEntity } from '../../entities/user-entity';
 
 
 @Component({
@@ -10,13 +13,23 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  private loginMessage: string = 'You are logged in';
-  private logoutMessage = 'log out';
-
+  private currentUser: UserEntity; 
   constructor(public authService: AuthService, private router: Router) {
   }
 
   public ngOnInit() {
+   
+    /*this.authService.getUserInfo().subscribe((user) => {
+      this.currentUser = user;
+    },
+      (error: HttpErrorResponse) => console.log(error)
+    );*/
+  }
+
+  public gg(){
+    this.authService.getUserInfo().subscribe((res) => {console.log(res)},
+    (error: HttpErrorResponse) => console.log('error')
+  );
   }
 
   public logout() {
@@ -27,5 +40,6 @@ export class HeaderComponent implements OnInit {
   public goToLoginPage() {
     this.router.navigate(['/login']);
   }
+
 
 }

@@ -1,3 +1,8 @@
-div, button{
+div, button {
     margin-top: 1%;
+}
+
+
+.ng-invalid {
+    border-left: 3px solid red
 }

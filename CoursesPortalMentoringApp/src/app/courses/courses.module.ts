@@ -14,11 +14,13 @@ import { AddCoursePageComponent } from 'src/app/courses/add-course-page/add-cour
 import { EditCoursePageComponent } from './edit-course-page/edit-course-page.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../routing/app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule, 
   ],
   exports: [
     CoursesComponent,

@@ -4,6 +4,8 @@ import { AuthInterceptor } from './auth-interceptor';
 import { UserEntity } from '../../entities/user-entity';
 import { UserService } from '../user.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable, of as ObservableOf, Subscription } from 'rxjs'; // since RxJs 6
 
 @Injectable({
   providedIn: 'root'
@@ -15,39 +17,44 @@ export class AuthService {
   private currentUser: UserEntity;
   private token: string;
   private usersUrl = 'http://localhost:3004/users';
-  constructor(private http: HttpClient, private userService: UserService) {
+  private subscription: Subscription;
+
+
+  constructor(private http: HttpClient, private userService: UserService, private router: Router) {
   }
 
-  public login(login: string, password: string) {
-  this.userService.getUserByCredentials(login, password).subscribe((token) => {
-    console.log('logged in successfully');
+  public login(login: string, password: string): Observable<Boolean>{
+    this.subscription = this.userService.getUserByCredentials(login, password).subscribe((token) => {
     this.token = token;
     this.authenticated = true;
+    localStorage.setItem('token', token);
+    console.log(token);
+    this.router.navigate(['/courses']);
+    return ObservableOf(true);
   },
-    (error: HttpErrorResponse) => console.log(error)
-  );
+    (error: HttpErrorResponse) => console.log(error));
+    return ObservableOf(true);
 
 }
   public logout(): void {
     localStorage.removeItem('token');
+    this.authenticated = false;
     console.log('logged out successfully');
   }
 
-  public getUserInfo(): void {
-    this.userService.getUserInfo().subscribe((user) => {
-      this.currentUser = user;
-    },
-      (error: HttpErrorResponse) => console.log(error)
-    );
+  public getUserInfo(): Observable<any> {
+    return this.userService.getUserInfo();
   
   }
 
   public isAuthenticated(): boolean {
-      return true;
+      return this.authenticated;
     
   }
 
   public getToken(): string {
+
+    console.log(this.token);
     return this.token;
 
   }

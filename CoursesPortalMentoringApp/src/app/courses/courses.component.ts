@@ -1,18 +1,27 @@
-import { Component, OnInit, Output, DoCheck, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, DoCheck, OnDestroy, AfterViewInit, OnChanges } from '@angular/core';
 import { Input } from '@angular/core';
 import { FilterByTitlePipe } from './filter-by-title.pipe';
 import { CourseService } from './course.service';
 import { Course } from '../entities/course';
 import { Router } from '@angular/router';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, Subject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import {
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
+import { SimpleChanges } from '@angular/core';
+import { skipWhile } from 'rxjs/internal/operators/skipWhile';
+import { filter } from 'rxjs/internal/operators/filter';
+import { FormControl } from '@angular/forms';
+import { LoaderService } from '../core/loader.service';
+
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css']
 })
-export class CoursesComponent implements OnInit, OnDestroy {
+export class CoursesComponent implements OnInit, OnDestroy{
 
   @Input()
   courseItem: Course;
@@ -23,15 +32,30 @@ export class CoursesComponent implements OnInit, OnDestroy {
   private loadMoreLog: string;
   private countToLoad = 4;
   private startPosition = 0;
+  private searchTerms = new Subject<string>();
+  private courseList$: Observable<Course[]>;
+  private searchControl: FormControl = new FormControl;
+  public deactivate;
 
-  
-  constructor(private courseService: CourseService, private router: Router) {
+  constructor(private courseService: CourseService, private router: Router, private loaderService: LoaderService) {
   }
 
   ngOnInit() {
     this.getCourses(this.startPosition, this.countToLoad);
-  }
+    this.courseList$ = this.searchTerms.pipe(
+      // wait 300ms after each keystroke before considering the term
+      debounceTime(300),
+ 
+      // ignore new term if same as previous term
+      distinctUntilChanged(),
 
+      filter(term => term.length>3||term.length==0),
+ 
+      // switch to new search observable each time the term changes
+      switchMap((term: string) => this.courseService.searchCourses(term)),
+    )
+  }
+  
   // delete course
   public deleteCourse(course: Course) {
     this.subscription = this.courseService.removeCourse(course.id).subscribe(() =>
@@ -52,25 +76,22 @@ export class CoursesComponent implements OnInit, OnDestroy {
   public getCourses(startPosition: number, countToLoad: number): void {
     let start: string = '' + startPosition;
     let count: string = '' + countToLoad;
-    this.subscription = this.courseService.getCourses(start, count).subscribe(courses => this.courseList = courses);
+    this.deactivate = this.loaderService.activateLoading();
+    this.subscription = this.courseService.getCourses(start, count).subscribe(courses => {this.courseList = courses; this.deactivate();});
   }
 
   public setCourses(courseList: Array<Course>): void {
     this.courseList = courseList;
   }
 
+  // Push a search term into the observable stream.
   public search(searchParameter) {
-    this.subscription = this.courseService.searchCourses(searchParameter.trim()).subscribe((courses) => {
-      this.courseList = courses;
-    },
-      (error: HttpErrorResponse) => console.log(error)
-    );
-  };
+    this.searchTerms.next(searchParameter.value); 
+    this.subscription = this.courseList$.subscribe(courses => this.courseList = courses);   
+  }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.startPosition = 0;
     this.subscription.unsubscribe();
   }
-
-
 }

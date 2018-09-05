@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { FormControl, Validators, Form } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -9,20 +10,18 @@ import { AuthService } from '../auth/auth.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  private userLogin: string;
-  private password: string;
   private loginMessage = 'login';
 
   constructor(private authService: AuthService, private router: Router) { }
+  
+  private userLogin: FormControl = new FormControl('', [Validators.required]);
+  private password: FormControl = new FormControl('', [Validators.required]);
 
   public ngOnInit() {
   }
 
   public login() {
-    this.authService.login(this.userLogin, this.password);
-    let fakeToken = this.authService.getToken();
-    localStorage.setItem('token', fakeToken);
-    this.router.navigate(['/courses']);
+    this.authService.login(this.userLogin.value, this.password.value).subscribe((res) => console.log('logged in successfuly'));
   }
 
 }

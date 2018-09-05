@@ -1,0 +1,7 @@
+.ng-invalid:not(.form-class)  {
+    border-left: 5px solid red; /* red */
+  }
+
+ .form-class{
+   float: center;
+ }

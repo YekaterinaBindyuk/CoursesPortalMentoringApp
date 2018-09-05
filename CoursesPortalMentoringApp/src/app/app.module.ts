@@ -14,6 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/auth/auth-interceptor';
 import { UserService } from './core/user.service';
+import { LoaderService } from './core/loader.service';
+import { StoreModule } from '@ngrx/store';
+import { Reducer } from './reducer';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,10 @@ import { UserService } from './core/user.service';
     CoreModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    //StoreModule.provideStore(Reducer),
   ],
-  providers: [AuthService, CourseService, UserService,
+  providers: [AuthService, CourseService, UserService, LoaderService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
