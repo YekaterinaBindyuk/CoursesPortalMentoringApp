@@ -15,14 +15,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/auth/auth-interceptor';
 import { UserService } from './core/user.service';
 import { LoaderService } from './core/loader.service';
-//import { StoreModule } from '@ngrx/store';
-import { Reducer } from './reducer';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/effects/app.effects';
+
 
 @NgModule({
   declarations: [

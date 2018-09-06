@@ -12,10 +12,7 @@ export class CourseService {
   private coursesUrl = 'http://localhost:3004/courses';
   private selectedCourse = new Course();
   private courseList: Array<Course> = [];
-  private httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  };
-  
+
   constructor(private http: HttpClient) { }
 
   public getCourses(start: string, count : string): Observable<Course[]> {
@@ -23,12 +20,12 @@ export class CourseService {
   }
 
   public createCourse(course: Course): Observable<Course> {
-    return this.http.post<Course>(this.coursesUrl, course, this.httpOptions);
+    return this.http.post<Course>(this.coursesUrl, course);
   }
 
   public updateCourse(course: Course): Observable<Course> {
     const url = this.coursesUrl + '/' + course.id;
-    return this.http.put<Course>(url, course, this.httpOptions);
+    return this.http.put<Course>(url, course);
   }
 
   public removeCourse(id: number): Observable<any> {

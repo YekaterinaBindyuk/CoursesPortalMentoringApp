@@ -5,7 +5,7 @@ import { UserEntity } from '../../entities/user-entity';
 import { UserService } from '../user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, of as ObservableOf, Subscription } from 'rxjs'; // since RxJs 6
+import { Observable, of as ObservableOf, Subscription } from 'rxjs'; 
 
 @Injectable({
   providedIn: 'root'
@@ -23,19 +23,19 @@ export class AuthService {
   constructor(private http: HttpClient, private userService: UserService, private router: Router) {
   }
 
-  public login(login: string, password: string): Observable<Boolean>{
+  public login(login: string, password: string): Observable<Boolean> {
     this.subscription = this.userService.getUserByCredentials(login, password).subscribe((token) => {
-    this.token = token;
-    this.authenticated = true;
-    localStorage.setItem('token', token);
-    console.log(token);
-    this.router.navigate(['/courses']);
-    return ObservableOf(true);
-  },
-    (error: HttpErrorResponse) => console.log(error));
+      this.token = token;
+      this.authenticated = true;
+      localStorage.setItem('token', token);
+      console.log(token);
+      this.router.navigate(['/courses']);
+      return ObservableOf(true);
+    },
+      (error: HttpErrorResponse) => console.log(error));
     return ObservableOf(true);
 
-}
+  }
   public logout(): void {
     localStorage.removeItem('token');
     this.authenticated = false;
@@ -44,17 +44,15 @@ export class AuthService {
 
   public getUserInfo(): Observable<any> {
     return this.userService.getUserInfo();
-  
+
   }
 
   public isAuthenticated(): boolean {
-      return this.authenticated;
-    
+    return this.authenticated;
+
   }
 
   public getToken(): string {
-
-    console.log(this.token);
     return this.token;
 
   }
