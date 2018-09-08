@@ -81,7 +81,7 @@ export class AppEffects {
     switchMap((action) => {
       const count = action.payload.count;
       const start = action.payload.start;
-      return this.http.get<Course[]>(this.coursesUrl, {params: {count, start})
+      return this.http.get<Course[]>(this.coursesUrl, {params: {count, start}})
         .pipe(
           map((courses) => {
             return new courseActions.SetCourseList(courses);

@@ -13,21 +13,21 @@ import { UserEntity } from '../../entities/user-entity';
 })
 export class HeaderComponent implements OnInit {
 
-  private currentUser: UserEntity; 
+  private currentUser: UserEntity = new UserEntity; 
   constructor(public authService: AuthService, private router: Router) {
   }
 
   public ngOnInit() {
-   
-    /*this.authService.getUserInfo().subscribe((user) => {
+    if (this.authService.isAuthenticated()){this.authService.getUserInfo().subscribe((user) => {
       this.currentUser = user;
     },
       (error: HttpErrorResponse) => console.log(error)
-    );*/
+    );
+  }
   }
 
-  public gg(){
-    this.authService.getUserInfo().subscribe((res) => {console.log(res)},
+  public getUserInfo(){
+    this.authService.getUserInfo().subscribe((res) => {console.log('header resp '+res)},
     (error: HttpErrorResponse) => console.log('error')
   );
   }

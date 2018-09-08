@@ -3,11 +3,10 @@
     <app-fake-logo></app-fake-logo>
   </div>
   <div *ngIf="authService.isAuthenticated(); else login" class='account-container'>
-    <p>You are logged in as: </p>
+    <p>You are logged in as: {{currentUser.login}}</p>
     <button (click)="logout()">log out</button>
   </div>
   <ng-template #login>
     <button class='account-container' (click)='goToLoginPage()'>login</button>
   </ng-template>
 </div>
-<button (click)="gg()"></button>
