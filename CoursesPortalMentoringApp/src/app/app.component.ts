@@ -16,8 +16,6 @@ export class AppComponent {
   public loading: boolean;
 
   public ngOnInit() {
-    // Dispatching authentification actions
-    this.store.dispatch(new courseActions.GetCourse());
     // Subscription to loading module 
     this.loaderService.subscribe(loading => {
       setTimeout(() => {

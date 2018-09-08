@@ -19,7 +19,7 @@ import { LoadingBlockComponent } from './loading-block/loading-block.component';
     AppRoutingModule
   ],
   declarations: [HeaderComponent, FooterComponent, FakeLogoComponent, ToolboxComponent, LoginPageComponent, BreadcrumbsComponent, LoadingBlockComponent],
-  exports: [HeaderComponent, FooterComponent, ToolboxComponent, BreadcrumbsComponent]
+  exports: [HeaderComponent, FooterComponent, ToolboxComponent, BreadcrumbsComponent, LoadingBlockComponent]
 
 })
 export class CoreModule { }

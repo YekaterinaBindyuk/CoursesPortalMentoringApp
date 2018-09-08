@@ -31,7 +31,7 @@ export class EditCoursePageComponent implements OnInit, OnDestroy {
       title: new FormControl(this.course.title, [Validators.required, Validators.maxLength(50)]),
       description: new FormControl(this.course.description, [Validators.required, Validators.maxLength(500)]),
       duration: new FormControl(this.course.duration, [Validators.required, isIntegerValidator]),
-      date: new FormControl(this.course.creation, [Validators.required,isDateValidator])
+      date: new FormControl(this.course.creation, [Validators.required, isDateValidator])
     });
 
   }
@@ -40,9 +40,11 @@ export class EditCoursePageComponent implements OnInit, OnDestroy {
 
   public getCourse(): void {
     const id = +this.activatedRoute.snapshot.paramMap.get('id');
-    this.getCourseSubscription = this.courseService.getCourseByID(id).subscribe(course => {this.course = course;
-      this.courseService.setSelectedCourse(this.course);}
-  );
+    this.getCourseSubscription = this.courseService.getCourseByID(id).subscribe(course => {
+    this.course = course;
+      this.courseService.setSelectedCourse(this.course);
+    }
+    );
     if (this.course === undefined) {
       this.router.navigate(['/404']);
     }

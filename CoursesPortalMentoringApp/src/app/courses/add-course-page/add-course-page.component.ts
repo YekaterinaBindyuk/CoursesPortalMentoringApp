@@ -43,7 +43,7 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
     this.course.duration = this.addCourseForm.value.duration;
     this.course.description = this.addCourseForm.value.description;
     this.course.creation = this.addCourseForm.value.date;
-    this.subscription = this.courseService.createCourse(this.course).subscribe(() => {console.log('the course has been created. Id: ' + this.course.id);     this.router.navigate(['/courses']);}
+    this.subscription = this.courseService.createCourse(this.course).subscribe(() => {this.router.navigate(['/courses']);}
   );
   }
 
