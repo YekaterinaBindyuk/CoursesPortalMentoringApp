@@ -45,11 +45,9 @@ export class CourseService {
   }
 
   public searchCourses(textFragment: string): Observable<Course[]> {
-    //return this.http.get<Course[]>(this.coursesUrl, { params: { textFragment } });
     this.store.dispatch(new courseActions.SearchCourses(textFragment));
-    return this.store.select((state) => state.course.courseList);
+    return this.http.get<Course[]>(this.coursesUrl, { params: { textFragment } });
   }
-
   public getSelectedCourse(): Course {
     return this.selectedCourse;
   }

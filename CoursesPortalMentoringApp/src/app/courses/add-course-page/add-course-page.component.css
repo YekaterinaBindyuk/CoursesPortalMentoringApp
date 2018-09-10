@@ -3,5 +3,12 @@
   }
 
  .form-class{
-   float: center;
+   text-align: center;
  }
+
+ button{
+  width: 20.2%
+}
+.input{
+  width: 40%
+}

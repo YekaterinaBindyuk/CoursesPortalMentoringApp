@@ -1,4 +1,4 @@
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject } from 'rxjs';
 
 export interface Action {
   type: string;
@@ -17,6 +17,5 @@ export class Dispatcher extends BehaviorSubject<Action> {
   }
 
   complete() {
-    // actions go here
   }
 }

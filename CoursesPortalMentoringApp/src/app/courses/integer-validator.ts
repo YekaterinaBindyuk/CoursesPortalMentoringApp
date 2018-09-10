@@ -1,6 +1,4 @@
-import { AbstractControl } from "@angular/forms";
+import { AbstractControl } from '@angular/forms';
 
 export function isIntegerValidator (control: AbstractControl): {[key: string]: any} | null {
-      return Number.isInteger(+control.value) ? null: {'notinteger': {value: control.value}};
-    };
-  
+      return Number.isInteger(+control.value) ? null : {'notinteger': {value: control.value}}; }

@@ -40,7 +40,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
   private searchControl: FormControl = new FormControl;
   public deactivate;
 
-  constructor(private store: Store<fromRoot.State>, private courseService: CourseService, private router: Router, private loaderService: LoaderService) {
+  constructor(private store: Store<fromRoot.State>, private courseService: CourseService,
+    private router: Router, private loaderService: LoaderService) {
   }
 
   ngOnInit() {
@@ -52,11 +53,11 @@ export class CoursesComponent implements OnInit, OnDestroy {
       // ignore new term if same as previous term
       distinctUntilChanged(),
 
-      filter(term => term.length > 3 || term.length == 0),
+      filter(term => term.length > 3 || term.length === 0),
 
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.courseService.searchCourses(term)),
-    )
+    );
   }
 
   // delete course
@@ -78,24 +79,22 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
   public getCourses(startPosition: number, countToLoad: number): void {
     this.deactivate = this.loaderService.activateLoading();
-    let start: string = '' + startPosition;
-    let count: string = '' + countToLoad;
- 
-    this.subscription = this.courseService.getCourses(start, count).subscribe(courses => { this.courseList = courses; this.deactivate();}, (error) => {this.deactivate();});
+    const start: string = '' + startPosition;
+    const count: string = '' + countToLoad;
+    this.subscription = this.courseService.getCourses(start, count).subscribe(courses => { this.courseList = courses; this.deactivate();
+      }, () => { this.deactivate();
+      });
   }
-
-
 
   // Push a search term into the observable stream.
   public search(searchParameter) {
     this.searchTerms.next(searchParameter.value);
-    this.deactivate = this.loaderService.activateLoading();
-
-    this.subscription = this.courseList$.subscribe((courses) => this.courseList = courses);
+    this.subscription = this.courseList$.subscribe((courses) => {
+      this.courseList = courses; this.deactivate(); }, (error) => this.deactivate());
   }
 
   public ngOnDestroy(): void {
     this.startPosition = 0;
-    //this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

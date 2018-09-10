@@ -11,7 +11,7 @@ export class LoaderService {
      * loading counter
      * @type {number}
      */
-    private loadingCounter: number = 0;
+    private loadingCounter = 0;
 
     /**
      * Promise object to subscribe

@@ -65,7 +65,7 @@ export class EditCoursePageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.getCourseSubscription.unsubscribe();
     this.courseService.setSelectedCourse(new Course());
+    this.getCourseSubscription.unsubscribe();
   }
 }

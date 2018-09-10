@@ -1,5 +1,5 @@
 <div [formGroup]="addCourseForm" class="form-class">
-    <div *ngIf="controls.title.invalid&&controls.title.touched">
+    <div class="form-class" *ngIf="controls.title.invalid&&controls.title.touched">
         <div *ngIf="controls.title.errors.required">
             This field cannot be empty
         </div>
@@ -8,9 +8,9 @@
         </div>
     </div>
     <div>
-        <input formControlName="title" name="title" placeholder="Title">
+        <input class="input" formControlName="title" name="title" placeholder="Title">
     </div>
-    <div *ngIf="controls.description.invalid&&controls.description.touched">
+    <div class="form-class" *ngIf="controls.description.invalid&&controls.description.touched">
         <div *ngIf="controls.description.errors.required">
             This field cannot be empty
         </div>
@@ -19,9 +19,9 @@
         </div>
     </div>
     <div>
-        <input formControlName="description" name="description" placeholder="Description">
+        <input class="input" formControlName="description" name="description" placeholder="Description">
     </div>
-    <div *ngIf="controls.duration.invalid&&controls.duration.touched">
+    <div class="form-class" *ngIf="controls.duration.invalid&&controls.duration.touched">
         <div *ngIf="controls.duration.errors.required">
             This field cannot be empty
         </div>
@@ -32,7 +32,7 @@
     <div>
         <app-course-duration formControlName="duration" [duration]="course.duration"></app-course-duration>
     </div>
-    <div *ngIf="controls.date.invalid&&controls.date.touched">
+    <div class="form-class" *ngIf="controls.date.invalid&&controls.date.touched">
         <div *ngIf="controls.date.errors.required">
             This field cannot be empty
         </div>

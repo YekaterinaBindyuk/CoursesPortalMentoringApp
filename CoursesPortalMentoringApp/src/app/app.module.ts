@@ -21,7 +21,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/effects/course.effects';
-import { LoadingBlockComponent } from './core/loading-block/loading-block.component';
 
 
 @NgModule({
@@ -40,7 +39,7 @@ import { LoadingBlockComponent } from './core/loading-block/loading-block.compon
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([AppEffects]),
   ],
-  providers: [AuthService, CourseService, UserService, LoaderService,
+  providers: [AuthService, CourseService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })

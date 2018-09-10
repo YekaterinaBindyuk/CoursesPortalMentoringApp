@@ -4,13 +4,13 @@ import * as courseActions from '../actions/course.actions';
 import { CustomAction } from '../actions/custom-action';
 
 export interface State {
-  courseList?: Course[],
-  course: Course
+  courseList?: Course[];
+  course?: Course;
 }
 
 export const initialState: State = {
   courseList: [],
-  course: null
+  course: new Course
 
 };
 
@@ -36,13 +36,13 @@ export function reducer(state = initialState, action: CustomAction): State {
       return state;
   }
 
-  function handleCourseList(state: State, action: CustomAction): State {
-    state.courseList = action.payload;
+  function handleCourseList(currentState: State, currentAction: CustomAction): State {
+    currentState.courseList = currentAction.payload;
     return state;
   }
 
-  function handleCourse(state: State, action: CustomAction): State {
-    state.course = action.payload;
+  function handleCourse(currentState: State, currentAction: CustomAction): State {
+    currentState.course = currentAction.payload;
     return state;
   }
 

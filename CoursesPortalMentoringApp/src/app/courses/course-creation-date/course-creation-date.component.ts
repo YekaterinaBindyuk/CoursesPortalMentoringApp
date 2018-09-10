@@ -9,7 +9,7 @@ import { ControlValueAccessor } from '@angular/forms';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { forwardRef } from '@angular/core';
 
-export const CREATION_VALUE_ACCESSOR : any = {
+export const CREATION_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CourseCreationDateComponent),
   multi: true,
@@ -35,7 +35,6 @@ export class CourseCreationDateComponent implements OnInit, ControlValueAccessor
     if (value !== undefined) {
       this.date = value;
     }
-    
   }
   change($event) {
     this.onChange($event.target.value);

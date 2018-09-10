@@ -28,8 +28,6 @@ export class ToolboxComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     console.log('Toolbox component view has been initialized');
   }
-
- 
   public addNewCourse() {
     this.router.navigate(['/courses/new']);
   }

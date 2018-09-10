@@ -1,15 +1,15 @@
-<form id="loginForm">
-    <div *ngIf="userLogin.invalid&&userLogin.touched">
+<form class="form-class" id="loginForm">
+    <div class="form-class" *ngIf="userLogin.invalid&&userLogin.touched">
         This field cannot be empty
     </div>
     <div>
-        <input [formControl]="userLogin" name="userLogin" placeholder="login">
+        <input class="input" [formControl]="userLogin" name="userLogin" placeholder="login">
     </div>
-    <div *ngIf="password.invalid&&password.touched">
+    <div class="form-class" *ngIf="password.invalid&&password.touched">
         This field cannot be empty
     </div>
     <div>
-        <input [formControl]="password" name="password" placeholder="password">
+        <input class="input" [formControl]="password" name="password" placeholder="password">
     </div>
     <button (click)="login()" type="submit" [disabled]="!userLogin.valid||!password.valid">{{loginMessage}}</button>
 </form>

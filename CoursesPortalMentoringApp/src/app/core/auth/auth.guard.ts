@@ -16,13 +16,14 @@ export class AuthGuard implements CanActivate {
   }
 
   public canActivate(): Observable<boolean> {
-    let subject = new Subject<boolean>();
+    const subject = new Subject<boolean>();
     this.auth.getUserInfo().subscribe((res: Response) => {
         subject.next(true);
-        console.log(res);
+        this.auth.setAuthenticated(true);
     },
       (error) => {
-        subject.next(false); 
+        subject.next(false);
+        this.auth.setAuthenticated(false);
         this.router.navigate(['/login']);
       }, () => {
         subject.complete();

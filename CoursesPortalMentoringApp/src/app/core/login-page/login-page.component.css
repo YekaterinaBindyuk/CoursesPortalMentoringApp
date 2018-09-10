@@ -1,8 +1,15 @@
-div, button {
-    margin-top: 1%;
-}
-
-
 .ng-invalid {
     border-left: 3px solid red
 }
+.form-class{
+    text-align: center;
+  }
+ 
+  button{
+   width: 30%;
+   margin-top: 1%;
+ }
+ .input{
+   margin-top: 1%;
+   width: 30%
+ }

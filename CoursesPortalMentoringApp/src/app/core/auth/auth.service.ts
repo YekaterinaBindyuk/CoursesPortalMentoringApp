@@ -5,7 +5,7 @@ import { UserEntity } from '../../entities/user-entity';
 import { UserService } from '../user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, of as ObservableOf, Subscription } from 'rxjs'; 
+import { Observable, of as ObservableOf, Subscription } from 'rxjs';
 import { Token } from '../../entities/token';
 
 @Injectable({
@@ -25,8 +25,7 @@ export class AuthService {
   public login(login: string, password: string): Observable<Boolean> {
     this.subscription = this.userService.getUserByCredentials(login, password).subscribe((resp) => {
       this.token = resp;
-      console.log(this.token.token);
-      this.authenticated = true; 
+      this.authenticated = true;
       localStorage.setItem('token', this.token.token);
       this.router.navigate(['/courses']);
       return ObservableOf(true);
@@ -48,7 +47,9 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     return this.authenticated;
-
+  }
+  public setAuthenticated(auth: boolean) {
+    this.authenticated = auth;
   }
 
 

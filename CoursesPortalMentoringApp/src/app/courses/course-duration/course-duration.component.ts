@@ -9,7 +9,7 @@ import { ControlValueAccessor } from '@angular/forms';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { forwardRef } from '@angular/core';
 
-export const DURATION_VALUE_ACCESSOR : any = {
+export const DURATION_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CourseDurationComponent),
   multi: true,
@@ -25,16 +25,15 @@ export class CourseDurationComponent implements OnInit, ControlValueAccessor {
 
   @Input()
   private duration: number;
-  private onChange = (_)=>{};
-  private onTouched = (_)=>{};
+  private onChange = (_) => {};
+  private onTouched = (_) => {};
 
   constructor() { }
 
   public writeValue(value: any): void {
     if (value !== undefined) {
-      this.duration=value;
+      this.duration = value;
     }
-    
   }
   change($event) {
     this.onChange($event.target.value);

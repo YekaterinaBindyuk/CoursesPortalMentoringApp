@@ -9,7 +9,6 @@ import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { isIntegerValidator } from '../integer-validator';
 import { isDateValidator } from '../date-validator';
-//import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-add-course-page',
@@ -20,7 +19,7 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
 
   private course: Course;
   private subscription: Subscription;
-  private generatedId = 2000;
+  private generatedId = 10000;
   private addCourseForm: FormGroup;
 
   constructor(private router: Router, private courseService: CourseService) { }
@@ -43,7 +42,7 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
     this.course.duration = this.addCourseForm.value.duration;
     this.course.description = this.addCourseForm.value.description;
     this.course.creation = this.addCourseForm.value.date;
-    this.subscription = this.courseService.createCourse(this.course).subscribe(() => {this.router.navigate(['/courses']);}
+    this.subscription = this.courseService.createCourse(this.course).subscribe(() => {this.router.navigate(['/courses']); }
   );
   }
 

@@ -1,2 +1,2 @@
-<input placeholder="duration" [(ngModel)]="duration" [value]="duration" (input)="change($event)">
+<input placeholder="duration" class="input" [(ngModel)]="duration" [value]="duration" (input)="change($event)">
 <div *ngIf='duration'>{{duration | duration}}</div>

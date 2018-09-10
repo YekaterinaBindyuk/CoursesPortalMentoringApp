@@ -54,4 +54,5 @@ export class SetCourse implements CustomAction {
 }
 
 
-export type CourseActions = | GetCourseById | SetCourse | GetCourseList | SetCourseList | CreateCourse | UpdateCourse | GetCourseById | SearchCourses;
+export type CourseActions = | GetCourseById | SetCourse |
+GetCourseList | SetCourseList | CreateCourse | UpdateCourse | GetCourseById | SearchCourses;

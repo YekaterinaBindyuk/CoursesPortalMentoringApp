@@ -1,7 +1,4 @@
 <div class='container'>
-  <div>
-    <app-fake-logo></app-fake-logo>
-  </div>
   <div *ngIf="authService.isAuthenticated(); else login" class='account-container'>
     <p>You are logged in as: {{currentUser.login}}</p>
     <button (click)="logout()">log out</button>
